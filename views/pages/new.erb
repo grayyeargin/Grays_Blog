@@ -1,0 +1,4 @@
+<div class="form_container">
+	<h1>Write New Blog Post</h1>
+	<%= erb(:'pages/_page_form', :locals => {page: Page.new, method: 'post', value: 'Post'}) %>
+</div>
