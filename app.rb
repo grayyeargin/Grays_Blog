@@ -11,6 +11,7 @@ helpers ActiveSupport::Inflector
 enable :sessions
 
 get '/' do
+  @pages = Page.all
   erb :index
 end
 
@@ -25,7 +26,7 @@ end
 
 post '/pages' do
   Page.create(params[:page])
-  redirect '/pages'
+  redirect '/'
 end
 
 get '/pages/:id' do
@@ -45,7 +46,8 @@ patch 'pages/:id' do
 end
 
 delete 'pages/:id' do
-
+  Page.destroy(params[:id])
+  redirect '/'
 end
 
 # USER SIGNUP/LOGIN

@@ -1,3 +1,35 @@
 body {
 	background-color: lightblue;
 }
+.form_container {
+	margin: 0 auto;
+	width: 500px;
+}
+
+input[type="text"], input[type="url"] {
+	margin-bottom: .5em;
+	height: 2em;
+	width: 50em;
+}
+
+.each_blog_display {
+	width: 200px;
+	height: 300px;
+	margin: 10px;
+	display: inline-block;
+}
+
+.each_blog_display h4 {
+	margin-top: 5px;
+}
+
+.blog_image_tile{
+	margin: 0 auto;
+	height: 200px;
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+.blog_image_tile img {
+	height: 200px;
+}

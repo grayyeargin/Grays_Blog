@@ -1,2 +1,15 @@
-<h1>Hello World!</h1>
-<a href="/users/login">Log In</a>
+<div class="blog_container">
+	<h1>HAPPENINGS</h1>
+
+	<% @pages.each do |page| %>
+		<a href="/pages/<%= page.id %>">
+		<div class="each_blog_display">
+			<div class="blog_image_tile">
+				<img src="<%= page.image_url %>" alt="<%= page.heading %>">
+			</div>
+			<h4><%= page.heading %></h4>
+		</div>
+		</a>
+	<% end %>
+
+</div>

@@ -3,7 +3,7 @@
 	<form action="/pages" method="post">
 		<input type="text" name="page[heading]" placeholder="Heading:">
 		<input type="url" name="page[image_url]" placeholder="Image URL:">
-		<input type="hidden" name="page[user_id]" value="<%= current_user %>">
+		<input type="hidden" name="page[user_id]" value="<%= session[:current_user] %>">
 		<textarea name="page[body]" placeholder="Blog body here:" cols="80" rows="20"></textarea>
 		<input type="submit" value="Post New Blog">
 	</form>
