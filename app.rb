@@ -8,6 +8,8 @@ require_relative "models/page"
 require_relative "helpers/form_helper"
 helpers ActiveSupport::Inflector
 
+enable :sessions
+
 get '/' do
   erb :index
 end
@@ -52,13 +54,17 @@ get '/users/signup' do
 end
 
 post '/users' do
-  user = User.new(params[:user])
-  user.password = params[:password]
-  user.save!
-  redirect "/login"
+  if params[:authentication] == "password"
+    user = User.new(params[:user])
+    user.password = params[:password]
+    user.save!
+    redirect "/users/login"
+  else
+    redirect "/users/signup"
+  end
 end
 
-get '/login' do
+get '/users/login' do
   erb :'users/login'
 end
 
@@ -66,6 +72,7 @@ post '/sessions' do
   redirect '/' unless user = User.find_by({username: params[:username]})
   if user.password == params[:password]
     session[:current_user] = user.id
-    redirect
+    redirect '/users'
+  end
 end
 

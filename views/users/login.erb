@@ -1,4 +1,9 @@
 <div class="form_container">
 	<h1>Log In</h1>
-	<%= erb(:'users/_page_form', :locals => {action: '/sessions' , method: 'post', value: 'Log In'}) %>
+		<form action="/sessions" method="post">
+			<input type="text" name="user[username]" placeholder="Username:">
+			<input type="password" name="password_hash" placeholder="password:">
+			<input type="submit" value="Log In">
+		</form>
 </div>
+

@@ -1,4 +1,14 @@
 <div class="form_container">
 	<h1>Edit Blog Post</h1>
-	<%= erb(:'pages/_page_form', :locals => {page: @page, method: 'patch', value: 'Edit Blog Post'}) %>
+	<div class="form_container">
+	<h1>Write New Blog Post</h1>
+	<form action="/pages" method="post">
+		<input type="hidden" name="_method" value="patch">
+		<input type="text" name="page[heading]" value="<%= @page.heading %>">
+		<input type="url" name="page[image_url]" value="<%= @page.image_url %>">
+		<input type="hidden" name="page[user_id]" value="<%= current_user %>">
+		<textarea name="page[body]" value="<%= @page.body %>" cols="80" rows="20"></textarea>
+		<input type="submit" value="Post New Blog">
+	</form>
+</div>
 </div>
