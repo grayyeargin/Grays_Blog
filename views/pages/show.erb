@@ -1,0 +1,17 @@
+<div class="blog_container">
+	<div>
+		<img src="<%= @page.image_url %>" alt="<%= @page.heading %>">
+	</div>
+	<h1><%= @page.heading %></h1>
+	<span class="italic_info"><%= @page.created_at %></span>
+	<span class="italic_info">By <%= @page.user_id.username %></span>
+	<article>
+		<%= @page.body %>
+	</article>
+	<% if current_user != nil %>
+	<form action="/pages" method="post">
+		<input type="hidden" name="_method" value="delete">
+		<input type="submit" value="&trash;">
+	</form>
+	<% end %>
+</div>

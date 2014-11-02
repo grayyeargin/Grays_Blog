@@ -16,7 +16,7 @@ get '/' do
 end
 
 get '/pages' do
-  @pages = Page.all
+  @pages = Page.all(order: [created_at: desc])
   erb :'pages/index'
 end
 
@@ -31,12 +31,12 @@ end
 
 get '/pages/:id' do
   @page = Page.find(params[:id])
-  erb :"page/show"
+  erb :"pages/show"
 end
 
 get '/pages/:id/edit' do
   @page = Page.find(params[:id])
-  erb :"page/edit"
+  erb :"pages/edit"
 end
 
 patch 'pages/:id' do
@@ -56,14 +56,10 @@ get '/users/signup' do
 end
 
 post '/users' do
-  if params[:authentication] == "password"
     user = User.new(params[:user])
     user.password = params[:password]
     user.save!
     redirect "/users/login"
-  else
-    redirect "/users/signup"
-  end
 end
 
 get '/users/login' do
@@ -74,7 +70,9 @@ post '/sessions' do
   redirect '/' unless user = User.find_by({username: params[:username]})
   if user.password == params[:password]
     session[:current_user] = user.id
-    redirect '/users'
+    redirect '/pages' # May redirect to... show
+  else
+    redirect '/' # May redirect to log-in
   end
 end
 
